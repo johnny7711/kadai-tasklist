@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\tasklist;
+use App\tasks;
 
 class TasksController extends Controller
 {
@@ -17,7 +17,7 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks = tasklist::all();
+        $tasks = tasks::all();
             
             return view('tasks.index', [
                 'tasks' => $tasks,
@@ -31,7 +31,7 @@ class TasksController extends Controller
      */
     public function create()
     {
-        $task = new tasklist;
+        $task = new tasks;
         
          return view('tasks.create', [
              'task' => $task,
@@ -46,7 +46,7 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        $task = new tasklist;
+        $task = new tasks;
         $task->content = $request->content;
         $task->save();
         
@@ -61,7 +61,7 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        $task = tasklist::find($id);
+        $task = tasks::find($id);
         
         return view('tasks.show', [
             'task' => $task,
@@ -76,7 +76,7 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
-        $task = tasklist::find($id);
+        $task = tasks::find($id);
         
         return view('tasks.edit', [
             'task' => $task,
@@ -92,7 +92,7 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $task = tasklist::find($id);
+        $task = tasks::find($id);
         $task->content = $request->content;
         $task->save();
         
