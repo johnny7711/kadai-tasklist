@@ -3,15 +3,27 @@
 @section('content')
 
     <h1>Task List</h1>
-    
-    @if(count($tasks) > 0)
-        <ul>
-            @foreach ($tasks as $task)
-                <li>{!! link_to_route('tasks.show', $task->id, ['id' => $task->id]) !!} : {{ $task->content }} >> {{ $task->status }}</li>
+@if(count($tasks) > 0)
+    <table class="table table-hover">
+        <thead>
+            <th>id</th>
+            <th>タスク</th>
+            <th>ステイタス</th>
+        </thead>
+        <tbody>
+             @foreach ($tasks as $task)
+            <tr>
+                <td>{!! link_to_route('tasks.show', $task->id, ['id' => $task->id]) !!}</td>
+                <td>{{ $task->content }}</td>
+                <td>{{ $task->status }}</td>
+            </tr>
             @endforeach
-        </ul>
-    @endif
+        </tbody>
+    </table>
+ @endif   
+ 
+    {!! link_to_route('tasks.create', '新規 タスクの投稿', null, ['class' => 'btn btn-primary']) !!}
     
-    {!! link_to_route('tasks.create', '新規メッセージの投稿') !!}
-
+      
+   
 @endsection

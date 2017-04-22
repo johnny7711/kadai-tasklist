@@ -2,17 +2,29 @@
 
 @section('content')
 
-    {!! Form::model($task, ['route' => 'tasks.store']) !!}
+    <h1>新規タスク作成ページ</h1>
     
-        {!! Form::label('content', 'タスク:') !!}
-        {!! Form::text('content') !!}
+    <div class="row">
+        <div class="">
+            {!! Form::model($task, ['route' => 'tasks.store']) !!}
+              <div class="form-group">
+            {!! Form::label('content', 'タスク:') !!}
+        {!! Form::text('content', null, ['class' => 'form-control']) !!}
+        </div>
         
-        {!! Form::label('status', 'ステイタス: ') !!}
-        {!! Form::text('status') !!}
         
-        {!! Form::submit('追加') !!}
+        <div class="form-group">
+             {!! Form::label('status', 'ステイタス: ') !!}
+        {!! Form::text('status', null, ['class' => 'form-control']) !!}
+        </div>
+       
+        
+        {!! Form::submit('追加', ['class'=>'btn btn-primary']) !!}
         
     
     {!! Form::close() !!}
+        </div>
+    </div>
+      
 
 @endsection
