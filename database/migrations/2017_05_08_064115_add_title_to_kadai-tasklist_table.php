@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKadaiTasklist extends Migration
+class AddTitleToKadaiTasklistTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,8 @@ class CreateKadaiTasklist extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('content');
-            $table->timestamps();
-            
-            $table->foreign('user_id')->references('id')->on('users');
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->integer('user_id')->unsigned()->index();
         });
     }
 
@@ -28,6 +24,8 @@ class CreateKadaiTasklist extends Migration
      */
     public function down()
     {
-        Schema::drop('tasks');
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->dropColumn('user_id');
+        });
     }
 }
